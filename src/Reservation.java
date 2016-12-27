@@ -1,0 +1,78 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Hotel Reservation System
+ * CS157A Group Project
+ * @author Arjun Nayak, Guohua Jiang, Peter Stadler
+ * @version 1.00
+ */
+
+/**
+ * Reservation for a room.
+ */
+public class Reservation {
+	private int reservationId;
+	private String username;
+	private Room room;
+	private Date startDate;
+	private Date endDate;
+	private int numOfDays;
+	private double totalCost;	
+	private boolean canceled;
+
+	public Reservation(int reservationId, String username, Room room, Date startDate, Date endDate, int numOfDays, double totalCost, boolean canceled) {
+		this.reservationId = reservationId;
+		this.username = username;
+		this.room = room;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.numOfDays = numOfDays;
+		this.totalCost = totalCost;
+		this.canceled = canceled;
+	}
+
+	public int getReservationId() {
+		return reservationId;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public int getNumOfDays() {
+		return numOfDays;
+	}
+
+	public double getTotalCost() {
+		return totalCost;
+	}
+	
+	public String getCustomer() {
+		return username;
+	}
+	
+	public boolean getCanceled() {
+		return canceled;
+	}
+	
+	/**
+	 * String representation of reservation information
+	 * @return the reservation information
+	 */
+	public String toString() {
+		return String.format("%s \n%s to %s \nTotal Cost: "
+				+ "$%.2f", room.toString(), 
+				new SimpleDateFormat("MM/dd/yyyy").format(startDate),
+				new SimpleDateFormat("MM/dd/yyyy").format(endDate),
+				numOfDays * room.getCostPerNight());
+	}
+}
